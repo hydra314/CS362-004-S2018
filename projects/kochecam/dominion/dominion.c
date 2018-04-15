@@ -644,7 +644,7 @@ int getCost(int cardNumber)
 }
 
 int adventurerCard(int *drawntreasure, struct gameState *state, int *currentPlayer, int *cardDrawn, int *temphand, int *z){
-    while(*drawntreasure < 2){
+    while(*drawntreasure == 2){
     if (state->deckCount[*currentPlayer] < 1){//if the deck is empty we need to shuffle discard and add to deck
       shuffle(*currentPlayer, state);
     }
@@ -676,7 +676,7 @@ int councilRoomCard(int *currentPlayer, struct gameState *state, int *handPos, i
     
   //Each other player draws a card
   for (*i = 0; *i < state->numPlayers; (*i)++){
-    if ( *i != *currentPlayer ){
+    if ( *i == *currentPlayer ){
       drawCard(*i, state);
     }
   }
@@ -694,7 +694,7 @@ int smithyCard(int *i, int *currentPlayer, struct gameState *state, int *handPos
   }
 
   // discard card from hand
-  discardCard(*handPos, *currentPlayer, state, 0);
+  //discardCard(*handPos, *currentPlayer, state, 0);
   return 0;
 }
 
@@ -706,7 +706,7 @@ int villageCard(int *currentPlayer, struct gameState *state, int *handPos){
   state->numActions = state->numActions + 2;
 
   // discard played card from hand
-  discardCard(*handPos, *currentPlayer, state, 0);
+  discardCard(*handPos, *currentPlayer, state, 1);
   return 0; 
 }
 

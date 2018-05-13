@@ -21,7 +21,7 @@ int smithyWasDiscarded = 0;
 void setRandomState(struct gameState *G, int player){
 	int i;
 
-	G->deckCount[player] = rand() % 15;			// Deck: from 0 to 15
+	G->deckCount[player] = (rand() % 12) + 3;			// Deck: from 3 to 15 so Smithy can always draw 3
 	G->discardCount[player] = 15 - G->deckCount[player];	// Always 15 between deck and discard
 	G->handCount[player] = (rand() % 7) + 3;	// Hand: between 3 and 10
 
@@ -105,6 +105,7 @@ int main(){
 		memcpy(&testG, &G, sizeof(struct gameState));
 
 		cardEffect(smithy, choice1, choice2, choice3, &testG, handPos, &bonus);
+
 		testSmithy(&G, &testG);
 	}
 

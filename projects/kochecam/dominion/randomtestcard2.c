@@ -22,7 +22,7 @@ int villageWasDiscarded = 0;
 void setRandomState(struct gameState *G, int player){
 	int i;
 
-	G->deckCount[player] = rand() % 15;			// Deck: from 0 to 15
+	G->deckCount[player] = (rand() % 15) + 1;			// Deck: from 1 to 15 so Village can always draw 1
 	G->discardCount[player] = 15 - G->deckCount[player];	// Always 15 between deck and discard
 	G->handCount[player] = (rand() % 7) + 3;	// Hand: between 3 and 10
 
